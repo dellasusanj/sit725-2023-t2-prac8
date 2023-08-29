@@ -9,12 +9,21 @@ const postCat = (req,res) => {
     });
 }
 
-const getAllCats = (req,res) => {
-    collection.getAllCats((err,result) => {
+const deleteCat = (req,res) => {
+    let cat = req.body;
+    collection.deleteCat(cat, (err, result) => {
         if (!err) {
-            res.json({statusCode:200, data:result, message:'get all cats success'});
+            res.json({statusCode:202, data:result, message:'success'});
         }
     });
 }
 
-module.exports = {postCat, getAllCats};
+const getAllCats = (req,res) => {
+    collection.getAllCats((err,result) => {
+        if (!err) {
+            res.json({statusCode:200, data:result, message:'success'});
+        }
+    });
+}
+
+module.exports = {postCat, getAllCats, deleteCat};
